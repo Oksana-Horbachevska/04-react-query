@@ -12,17 +12,19 @@ interface MoviesResponse {
 }
 
 export default async function fetchMovies(
-  query: string
+  query: string,
+  page: number
 ): Promise<MoviesResponse> {
   const options = {
     params: {
       query,
+      page,
     },
     headers: {
       Authorization: `Bearer ${myKey}`,
     },
   };
   const response = await axios.get<MoviesResponse>(URL, options);
-  // console.log(response.data);
+  console.log(response.data);
   return response.data;
 }
